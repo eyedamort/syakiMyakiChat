@@ -143,6 +143,27 @@ docker compose up -d --build
 
 Volume `session-data` сохраняется между деплоями.
 
+## Автодеплой (GitHub Actions)
+
+При пуше в `main` запускается [.github/workflows/deploy.yml](./.github/workflows/deploy.yml):
+`git pull` + `docker compose up -d --build` на сервере.
+
+Секреты в GitHub → Settings → Secrets → Actions:
+
+| Secret | Значение |
+|--------|----------|
+| `SSH_HOST` | IP VPS |
+| `SSH_USER` | `root` |
+| `SSH_PRIVATE_KEY` | приватный ключ deploy (см. `deploy/setup-github-deploy.sh`) |
+
+Первичная настройка на сервере:
+
+```bash
+sudo bash /opt/syakiMyakiChat/deploy/setup-github-deploy.sh
+```
+
+Скрипт создаёт ключ, добавляет в `authorized_keys` и выводит команду для `gh secret set`.
+
 ## Что не в scope compose
 
 - PostgreSQL/Redis (сейчас in-memory + JSON file)
