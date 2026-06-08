@@ -1,0 +1,22 @@
+.cat-logo {
+  flex-shrink: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center 35%;
+  border-radius: 50%;
+  border: 3px solid var(--accent-border);
+  background: var(--surface-raised);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
+}
+
+.cat-logo--animated {
+  animation: cat-wiggle 4s ease-in-out infinite;
+}
+
+@keyframes cat-wiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  20% { transform: rotate(-3deg) scale(1.02); }
+  40% { transform: rotate(3deg) scale(1); }
+  60% { transform: rotate(-2deg) scale(1.01); }
+  80% { transform: rotate(2deg) scale(1); }
+}

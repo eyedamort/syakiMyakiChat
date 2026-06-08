@@ -1,0 +1,42 @@
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.app-brand--lg {
+  flex-direction: column;
+  text-align: center;
+  gap: 12px;
+}
+
+.app-brand--lg .app-brand__text {
+  text-align: center;
+}
+
+.app-brand__title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.app-brand--sm .app-brand__title {
+  font-size: 1.25rem;
+}
+
+.app-brand--lg .app-brand__title {
+  font-size: 2rem;
+}
+
+.app-brand__subtitle {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.app-brand--lg .app-brand__subtitle {
+  margin-top: 8px;
+}

@@ -1,0 +1,26 @@
+.feature-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text);
+  text-align: left;
+}
+
+.feature-pill__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
