@@ -4,7 +4,7 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 COPY vite-project/package.json vite-project/package-lock.json ./
-RUN npm ci
+RUN npm install --no-audit --no-fund
 
 COPY vite-project/ .
 
