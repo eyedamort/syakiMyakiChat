@@ -1,3 +1,12 @@
+{
+	email admin@syakimyaki.ru
+	auto_https disable_redirects
+}
+
 syakimyaki.ru, www.syakimyaki.ru {
+	reverse_proxy 127.0.0.1:8080
+}
+
+http://138.16.178.125 {
 	reverse_proxy 127.0.0.1:8080
 }
