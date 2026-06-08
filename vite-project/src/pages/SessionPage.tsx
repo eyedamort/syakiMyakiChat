@@ -183,7 +183,7 @@ function SessionEditor({ sessionId, userName }: { sessionId: string; userName: s
             onChange={handleChange}
             onSelectionChange={handleSelectionChange}
             remoteCursors={remoteCursors}
-            placeholder="Введите текст…"
+            placeholder="Напишите что-нибудь…"
           />
         </EditorShell>
         <SessionLounge othersCount={othersCount} syncStatus={syncStatus} />

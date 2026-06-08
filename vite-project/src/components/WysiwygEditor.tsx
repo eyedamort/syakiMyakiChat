@@ -1,4 +1,4 @@
-import { useEditor, EditorContent } from '@tiptap/react'
+import { useEditor, EditorContent, useEditorState } from '@tiptap/react'
 import { NodeSelection } from '@tiptap/pm/state'
 import StarterKit from '@tiptap/starter-kit'
 import { useEffect, useRef, type ChangeEvent } from 'react'
@@ -21,6 +21,25 @@ interface WysiwygEditorProps {
   placeholder?: string
 }
 
+function EditorWriteIcon() {
+  return (
+    <svg
+      className="wysiwyg-placeholder__icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+      <path d="m15 5 3 3" />
+    </svg>
+  )
+}
+
 export function WysiwygEditor({
   content,
   onChange,
@@ -37,13 +56,15 @@ export function WysiwygEditor({
   onSelectionChangeRef.current = onSelectionChange
   onChangeRef.current = onChange
 
+  const placeholderText = placeholder ?? 'Начните писать…'
+
   const editor = useEditor({
     extensions: [StarterKit, EditorImage, RemoteCursors],
     content,
     editorProps: {
       attributes: {
         class: 'wysiwyg-content',
-        'data-placeholder': placeholder ?? 'Начните писать…',
+        'aria-label': placeholderText,
       },
       handlePaste: (_view, event) => {
         const file = getImageFromClipboard(event.clipboardData)
@@ -111,6 +132,13 @@ export function WysiwygEditor({
     if (!editor) return
     editor.commands.setRemoteCursors(remoteCursors)
   }, [editor, remoteCursors])
+
+  const { isEmpty } = useEditorState({
+    editor,
+    selector: ({ editor: currentEditor }) => ({
+      isEmpty: currentEditor.isEmpty,
+    }),
+  })
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -240,7 +268,15 @@ export function WysiwygEditor({
           ↪
         </button>
       </div>
-      <EditorContent editor={editor} className="wysiwyg-body" />
+      <div className="wysiwyg-body-wrap">
+        {isEmpty && (
+          <div className="wysiwyg-placeholder" aria-hidden>
+            <EditorWriteIcon />
+            <span className="wysiwyg-placeholder__text">{placeholderText}</span>
+          </div>
+        )}
+        <EditorContent editor={editor} className="wysiwyg-body" />
+      </div>
     </div>
   )
 }

@@ -75,7 +75,7 @@ function SessionPopoutEditor({
           onChange={handleChange}
           onSelectionChange={handleSelectionChange}
           remoteCursors={remoteCursors}
-          placeholder="Введите текст…"
+          placeholder="Напишите что-нибудь…"
         />
       </div>
     </div>
