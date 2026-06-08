@@ -24,3 +24,15 @@
   font-size: 1.1rem;
   line-height: 1;
 }
+
+@media (max-width: 640px) {
+  .feature-pills {
+    margin-bottom: 18px;
+    gap: 6px;
+  }
+
+  .feature-pill {
+    padding: 9px 12px;
+    font-size: 0.8rem;
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import './InvitePanel.css'
 
 interface InvitePanelProps {
@@ -6,6 +7,7 @@ interface InvitePanelProps {
 }
 
 export function InvitePanel({ sessionId }: InvitePanelProps) {
+  const isMobile = useMediaQuery('(max-width: 640px)')
   const inviteUrl = `${window.location.origin}/join/${sessionId}`
   const [copied, setCopied] = useState(false)
 
@@ -19,9 +21,9 @@ export function InvitePanel({ sessionId }: InvitePanelProps) {
     }
   }
 
-  return (
-    <div className="invite-panel">
-      <span className="invite-label">🔗 Пригласить по ссылке</span>
+  const body = (
+    <>
+      {!isMobile && <span className="invite-label">🔗 Пригласить по ссылке</span>}
       <div className="invite-row">
         <input
           className="invite-input"
@@ -34,6 +36,17 @@ export function InvitePanel({ sessionId }: InvitePanelProps) {
           {copied ? 'Скопировано' : 'Копировать'}
         </button>
       </div>
-    </div>
+    </>
   )
+
+  if (isMobile) {
+    return (
+      <details className="invite-panel invite-panel--collapsible">
+        <summary className="invite-panel__summary">🔗 Пригласить друзей</summary>
+        <div className="invite-panel__body">{body}</div>
+      </details>
+    )
+  }
+
+  return <div className="invite-panel">{body}</div>
 }

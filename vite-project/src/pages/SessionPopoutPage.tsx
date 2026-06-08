@@ -4,25 +4,10 @@ import { WysiwygEditor } from '../components/WysiwygEditor'
 import { useCollaborativeEditor } from '../hooks/useCollaborativeEditor'
 import { webSocketService } from '../services/websocket'
 import type { ConnectionStatus } from '../services/websocket'
-import type { SyncStatus } from '../types/sync'
+import { useMediaQuery } from '../hooks/useMediaQuery'
+import { connectionLabel, syncLabel } from '../utils/statusLabels'
 import { getUserName } from '../utils/user'
 import './SessionPopoutPage.css'
-
-const CONNECTION_LABELS: Record<ConnectionStatus, string> = {
-  idle: 'Соединение: Ожидание',
-  connecting: 'Соединение: Подключение…',
-  connected: 'Соединение: Подключено',
-  disconnected: 'Соединение: Отключено',
-  error: 'Соединение: Ошибка',
-}
-
-const SYNC_LABELS: Record<SyncStatus, string> = {
-  idle: '',
-  pending: 'Сохранение…',
-  synced: 'Синхронизировано',
-  offline: 'Нет соединения',
-  disabled: 'Локально',
-}
 
 export function SessionPopoutPage() {
   const { sessionId } = useParams<{ sessionId: string }>()
@@ -59,7 +44,9 @@ function SessionPopoutEditor({
     }
   }, [userName])
 
-  const syncLabel = SYNC_LABELS[syncStatus]
+  const isCompact = useMediaQuery('(max-width: 640px)')
+  const wsLabel = connectionLabel(wsStatus, isCompact)
+  const syncText = syncLabel(syncStatus, isCompact)
 
   return (
     <div className="popout-page">
@@ -70,15 +57,15 @@ function SessionPopoutEditor({
         </div>
         <div className="popout-status">
           <span className="popout-ws" data-status={wsStatus}>
-            {CONNECTION_LABELS[wsStatus]}
+            {wsLabel}
           </span>
-          {syncLabel && (
+          {syncText && (
             <span className="popout-sync" data-sync={syncStatus}>
-              {syncLabel}
+              {syncText}
             </span>
           )}
           <button type="button" className="popout-close-btn" onClick={() => window.close()}>
-            Закрыть окно
+            {isCompact ? 'Закрыть' : 'Закрыть окно'}
           </button>
         </div>
       </header>

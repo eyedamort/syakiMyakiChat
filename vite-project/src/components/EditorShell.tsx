@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useFullscreen } from '../hooks/useFullscreen'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import './EditorShell.css'
 
 interface EditorShellProps {
@@ -8,6 +9,7 @@ interface EditorShellProps {
 }
 
 export function EditorShell({ sessionId, children }: EditorShellProps) {
+  const isMobile = useMediaQuery('(max-width: 640px)')
   const { ref, isFullscreen, toggle } = useFullscreen<HTMLDivElement>()
 
   const openPopout = () => {
@@ -22,12 +24,26 @@ export function EditorShell({ sessionId, children }: EditorShellProps) {
   return (
     <div className={`editor-area${isFullscreen ? ' editor-area--fullscreen' : ''}`} ref={ref}>
       <div className="editor-area__toolbar">
-        <button type="button" className="editor-area__btn" onClick={toggle}>
-          {isFullscreen ? '⊟ Свернуть' : '⛶ На весь экран'}
+        <button
+          type="button"
+          className="editor-area__btn"
+          onClick={toggle}
+          title={isFullscreen ? 'Свернуть' : 'На весь экран'}
+          aria-label={isFullscreen ? 'Свернуть' : 'На весь экран'}
+        >
+          {isFullscreen ? '⊟' : '⛶'}
+          {!isMobile && (isFullscreen ? ' Свернуть' : ' На весь экран')}
         </button>
-        <button type="button" className="editor-area__btn" onClick={openPopout}>
-          ↗ Отдельное окно
-        </button>
+        {!isMobile && (
+          <button
+            type="button"
+            className="editor-area__btn"
+            onClick={openPopout}
+            title="Отдельное окно"
+          >
+            ↗ Отдельное окно
+          </button>
+        )}
       </div>
       <div className="editor-area__content">{children}</div>
     </div>

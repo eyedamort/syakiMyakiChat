@@ -61,3 +61,64 @@
   border-color: var(--accent);
   outline: none;
 }
+
+@media (max-width: 640px) {
+  .invite-panel {
+    padding: 0;
+    margin-bottom: 8px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .invite-panel--collapsible {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .invite-panel__summary {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-h);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .invite-panel__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .invite-panel__summary::after {
+    content: ' ▾';
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .invite-panel--collapsible[open] .invite-panel__summary::after {
+    content: ' ▴';
+  }
+
+  .invite-panel__body {
+    padding: 0 10px 10px;
+  }
+
+  .invite-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .invite-input {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .invite-copy-btn {
+    width: 100%;
+    padding: 9px 14px;
+    font-size: 0.82rem;
+  }
+}

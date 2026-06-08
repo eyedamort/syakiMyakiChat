@@ -159,16 +159,67 @@
 
 @media (max-width: 640px) {
   .app {
-    padding: 16px;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    padding:
+      max(8px, env(safe-area-inset-top))
+      max(8px, env(safe-area-inset-right))
+      max(8px, env(safe-area-inset-bottom))
+      max(8px, env(safe-area-inset-left));
   }
 
   .app-header {
     flex-direction: column;
-    padding: 14px 16px;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+  }
+
+  .app-header .app-brand {
+    width: 100%;
+    min-width: 0;
   }
 
   .status-group {
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
   }
 
+  .ws-status,
+  .sync-status,
+  .exit-session-btn {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  .exit-session-btn {
+    margin-left: auto;
+  }
+
+  .participants {
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    gap: 6px;
+  }
+
+  .participant-badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+
+  .editor-form {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+    gap: 6px;
+  }
+
+  .editor-form > .editor-area {
+    flex: 1 1 0;
+    min-height: 0;
+  }
 }

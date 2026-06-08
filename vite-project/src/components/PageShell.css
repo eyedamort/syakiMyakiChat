@@ -82,3 +82,41 @@
   33% { transform: translate(24px, -16px) scale(1.05); }
   66% { transform: translate(-16px, 12px) scale(0.95); }
 }
+
+@media (max-width: 640px) {
+  .page-shell--app {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .page-shell--centered {
+    align-items: flex-start;
+    padding:
+      max(12px, env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      max(12px, env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
+  }
+
+  .page-shell__blob--1 {
+    width: 240px;
+    height: 240px;
+    top: -80px;
+    right: -60px;
+  }
+
+  .page-shell__blob--2 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .page-shell__blob--3 {
+    width: 160px;
+    height: 160px;
+  }
+
+  .page-shell__paws {
+    display: none;
+  }
+}

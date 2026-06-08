@@ -40,3 +40,38 @@
 .app-brand--lg .app-brand__subtitle {
   margin-top: 8px;
 }
+
+.app-brand--sm {
+  min-width: 0;
+}
+
+.app-brand--sm .app-brand__text {
+  min-width: 0;
+  flex: 1;
+}
+
+.app-brand--sm .app-brand__subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .app-brand--lg .app-brand__title {
+    font-size: 1.65rem;
+  }
+
+  .app-brand--sm .app-brand__title {
+    font-size: 1.1rem;
+  }
+
+  .app-brand--sm .app-brand__subtitle {
+    white-space: normal;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

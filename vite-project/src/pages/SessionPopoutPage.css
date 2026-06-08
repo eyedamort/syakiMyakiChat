@@ -88,12 +88,26 @@
 }
 
 @media (max-width: 640px) {
+  .popout-page {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
   .popout-header {
     flex-direction: column;
     align-items: flex-start;
+    padding:
+      max(10px, env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      10px
+      max(12px, env(safe-area-inset-left));
   }
 
   .popout-status {
     justify-content: flex-start;
+    width: 100%;
+  }
+
+  .popout-editor {
+    padding: 8px;
   }
 }

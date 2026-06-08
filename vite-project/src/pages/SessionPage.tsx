@@ -10,26 +10,12 @@ import { useCollaborativeEditor } from '../hooks/useCollaborativeEditor'
 import { getSession } from '../services/api'
 import { webSocketService } from '../services/websocket'
 import type { ConnectionStatus } from '../services/websocket'
-import type { SessionInfo, SyncStatus } from '../types/sync'
+import type { SessionInfo } from '../types/sync'
+import { useMediaQuery } from '../hooks/useMediaQuery'
+import { connectionLabel, syncLabel } from '../utils/statusLabels'
 import { getUserName } from '../utils/user'
 import '../App.css'
 import './WelcomePage.css'
-
-const CONNECTION_LABELS: Record<ConnectionStatus, string> = {
-  idle: 'Соединение: Ожидание',
-  connecting: 'Соединение: Подключение…',
-  connected: 'Соединение: Подключено',
-  disconnected: 'Соединение: Отключено',
-  error: 'Соединение: Ошибка',
-}
-
-const SYNC_LABELS: Record<SyncStatus, string> = {
-  idle: '',
-  pending: 'Сохранение…',
-  synced: 'Синхронизировано',
-  offline: 'Нет соединения',
-  disabled: 'Локально',
-}
 
 interface LocationState {
   session?: SessionInfo
@@ -124,7 +110,9 @@ function SessionEditor({ sessionId, userName }: { sessionId: string; userName: s
     return unsubscribe
   }, [sessionId, navigate])
 
-  const syncLabel = SYNC_LABELS[syncStatus]
+  const isCompact = useMediaQuery('(max-width: 640px)')
+  const wsLabel = connectionLabel(wsStatus, isCompact)
+  const syncText = syncLabel(syncStatus, isCompact)
 
   const handleLeaveSession = () => {
     webSocketService.disconnect()
@@ -158,15 +146,15 @@ function SessionEditor({ sessionId, userName }: { sessionId: string; userName: s
         <div className="status-group">
           <div className="ws-status" data-status={wsStatus}>
             <span className="ws-dot" />
-            <span>{CONNECTION_LABELS[wsStatus]}</span>
+            <span>{wsLabel}</span>
           </div>
-          {syncLabel && (
+          {syncText && (
             <div className="sync-status" data-sync={syncStatus}>
-              {syncLabel}
+              {syncText}
             </div>
           )}
           <button type="button" className="exit-session-btn" onClick={handleLeaveSession}>
-            Выйти из сессии
+            {isCompact ? 'Выйти' : 'Выйти из сессии'}
           </button>
         </div>
       </header>

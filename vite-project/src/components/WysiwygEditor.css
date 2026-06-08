@@ -242,3 +242,53 @@
 .remote-image-selection-badge.is-visible {
   opacity: 1;
 }
+
+@media (max-width: 640px) {
+  .wysiwyg-editor {
+    min-height: 0;
+  }
+
+  .wysiwyg-toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    gap: 2px;
+    padding: 4px 8px;
+    scrollbar-width: none;
+  }
+
+  .wysiwyg-toolbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wysiwyg-toolbar button {
+    flex-shrink: 0;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 6px;
+    font-size: 13px;
+  }
+
+  .toolbar-divider {
+    flex-shrink: 0;
+    height: 22px;
+    margin: 0 2px;
+  }
+
+  .wysiwyg-body {
+    flex: 1 1 0;
+    min-height: 0;
+  }
+
+  .wysiwyg-content {
+    padding: 14px 12px;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100%;
+  }
+
+  .wysiwyg-content h2 {
+    font-size: 1.25rem;
+  }
+}

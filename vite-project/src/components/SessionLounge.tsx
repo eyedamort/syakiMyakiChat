@@ -1,3 +1,4 @@
+import { useMediaQuery } from '../hooks/useMediaQuery'
 import type { SyncStatus } from '../types/sync'
 import './SessionLounge.css'
 
@@ -30,14 +31,19 @@ interface SessionLoungeProps {
 }
 
 export function SessionLounge({ othersCount, syncStatus }: SessionLoungeProps) {
-  return (
-    <aside className="session-lounge" aria-label="Подсказки">
+  const isMobile = useMediaQuery('(max-width: 640px)')
+
+  const meta =
+    othersCount > 0
+      ? `С вами ещё ${othersCount} ${pluralize(othersCount, 'человек', 'человека', 'человек')}`
+      : 'Пока только вы — отправьте ссылку друзьям'
+
+  const content = (
+    <>
       <div className="session-lounge__header">
         <h2 className="session-lounge__title">Уютная зона котика 🤙</h2>
         <p className="session-lounge__meta">
-          {othersCount > 0
-            ? `С вами ещё ${othersCount} ${pluralize(othersCount, 'человек', 'человека', 'человек')}`
-            : 'Пока только вы — отправьте ссылку друзьям'}
+          {meta}
           {syncStatus === 'synced' && ' · всё синхронизировано'}
         </p>
       </div>
@@ -53,6 +59,21 @@ export function SessionLounge({ othersCount, syncStatus }: SessionLoungeProps) {
           </article>
         ))}
       </div>
+    </>
+  )
+
+  if (isMobile) {
+    return (
+      <details className="session-lounge session-lounge--collapsible">
+        <summary className="session-lounge__summary">Подсказки · {meta}</summary>
+        {content}
+      </details>
+    )
+  }
+
+  return (
+    <aside className="session-lounge" aria-label="Подсказки">
+      {content}
     </aside>
   )
 }
