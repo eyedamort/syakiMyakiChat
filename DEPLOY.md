@@ -102,18 +102,19 @@ docker build -f vite-project/Dockerfile \
 
 3. На API-хосте настроить WebSocket upgrade для `/ws/:sessionId`.
 
-## TLS / домен
+## TLS / домен (syakimyaki.ru)
 
-Пример с Caddy перед compose:
+DNS (REG.RU): A-записи `@` и `www` → IP VPS.
 
+Docker слушает `127.0.0.1:8080`, снаружи **Caddy** на 80/443. Конфиг: [deploy/Caddyfile](./deploy/Caddyfile).
+
+```bash
+cd /opt/syakiMyakiChat
+git pull
+sudo bash deploy/setup-caddy.sh
 ```
-example.com {
-    reverse_proxy localhost:80
-}
-```
 
-Или Traefik labels на сервис `web`.  
-WebSocket должен идти через тот же домен, что и SPA (same-origin) — так проще всего.
+WebSocket идёт через тот же домен (same-origin).
 
 ## Ресурсы
 
