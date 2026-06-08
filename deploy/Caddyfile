@@ -1,6 +1,7 @@
 {
 	email admin@syakimyaki.ru
 	auto_https disable_redirects
+	acme_ca https://acme-v02.api.letsencrypt.org/directory
 }
 
 syakimyaki.ru, www.syakimyaki.ru {
