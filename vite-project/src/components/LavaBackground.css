@@ -1,0 +1,270 @@
+.lava-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg);
+}
+
+.lava-bg__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.75;
+  will-change: transform, border-radius;
+}
+
+.lava-bg__orb--1 {
+  width: min(480px, 70vw);
+  height: min(480px, 70vw);
+  top: -12%;
+  left: -8%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(255, 150, 60, 0.75) 0%,
+    rgba(255, 90, 20, 0.4) 42%,
+    transparent 68%
+  );
+  animation: lava-drift-1 42s ease-in-out infinite;
+}
+
+.lava-bg__orb--2 {
+  width: min(380px, 55vw);
+  height: min(380px, 55vw);
+  top: 28%;
+  right: -10%;
+  background: radial-gradient(
+    circle at 60% 40%,
+    rgba(255, 110, 30, 0.65) 0%,
+    rgba(255, 60, 0, 0.32) 45%,
+    transparent 70%
+  );
+  animation: lava-drift-2 36s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+.lava-bg__orb--3 {
+  width: min(320px, 48vw);
+  height: min(320px, 48vw);
+  bottom: -8%;
+  left: 18%;
+  background: radial-gradient(
+    circle at 40% 60%,
+    rgba(255, 180, 90, 0.55) 0%,
+    rgba(255, 100, 25, 0.28) 48%,
+    transparent 72%
+  );
+  animation: lava-drift-3 48s ease-in-out infinite;
+  animation-delay: -24s;
+}
+
+.lava-bg__orb--4 {
+  width: min(260px, 40vw);
+  height: min(260px, 40vw);
+  top: 55%;
+  left: 42%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 130, 40, 0.5) 0%,
+    rgba(255, 70, 10, 0.22) 50%,
+    transparent 68%
+  );
+  animation: lava-drift-4 32s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+.lava-bg__orb--5 {
+  width: min(220px, 36vw);
+  height: min(220px, 36vw);
+  top: 8%;
+  right: 22%;
+  background: radial-gradient(
+    circle at 45% 55%,
+    rgba(255, 200, 120, 0.45) 0%,
+    rgba(255, 120, 40, 0.2) 52%,
+    transparent 70%
+  );
+  animation: lava-drift-5 40s ease-in-out infinite;
+  animation-delay: -18s;
+}
+
+.lava-bg__orb--6 {
+  width: min(300px, 44vw);
+  height: min(300px, 44vw);
+  bottom: 12%;
+  right: 12%;
+  background: radial-gradient(
+    circle at 55% 35%,
+    rgba(255, 80, 15, 0.45) 0%,
+    rgba(200, 50, 10, 0.2) 48%,
+    transparent 72%
+  );
+  animation: lava-drift-6 44s ease-in-out infinite;
+  animation-delay: -30s;
+}
+
+@keyframes lava-drift-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 58% 42% 62% 38% / 48% 58% 42% 52%;
+    opacity: 0.7;
+  }
+  25% {
+    transform: translate(12vw, 18vh) scale(1.1);
+    border-radius: 42% 58% 38% 62% / 62% 38% 58% 42%;
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(28vw, 8vh) scale(0.92);
+    border-radius: 62% 38% 48% 52% / 42% 62% 38% 58%;
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(8vw, 32vh) scale(1.06);
+    border-radius: 48% 52% 58% 42% / 58% 42% 52% 48%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes lava-drift-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
+    opacity: 0.65;
+  }
+  33% {
+    transform: translate(-18vw, 14vh) scale(1.08);
+    border-radius: 55% 45% 42% 58% / 48% 52% 45% 55%;
+    opacity: 0.82;
+  }
+  66% {
+    transform: translate(-8vw, 28vh) scale(0.94);
+    border-radius: 38% 62% 55% 45% / 62% 38% 48% 52%;
+    opacity: 0.55;
+  }
+}
+
+@keyframes lava-drift-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 52% 48% 58% 42% / 45% 55% 48% 52%;
+    opacity: 0.6;
+  }
+  20% {
+    transform: translate(14vw, -12vh) scale(1.12);
+    border-radius: 48% 52% 42% 58% / 58% 42% 55% 45%;
+    opacity: 0.78;
+  }
+  45% {
+    transform: translate(-10vw, -22vh) scale(0.9);
+    border-radius: 58% 42% 52% 48% / 42% 58% 38% 62%;
+    opacity: 0.5;
+  }
+  70% {
+    transform: translate(22vw, -8vh) scale(1.04);
+    border-radius: 42% 58% 48% 52% / 55% 45% 62% 38%;
+    opacity: 0.72;
+  }
+}
+
+@keyframes lava-drift-4 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
+    opacity: 0.55;
+  }
+  30% {
+    transform: translate(-16vw, -18vh) scale(1.14);
+    border-radius: 62% 38% 55% 45% / 48% 52% 42% 58%;
+    opacity: 0.75;
+  }
+  60% {
+    transform: translate(10vw, -28vh) scale(0.88);
+    border-radius: 38% 62% 48% 52% / 62% 38% 55% 45%;
+    opacity: 0.45;
+  }
+}
+
+@keyframes lava-drift-5 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 55% 45% 52% 48% / 48% 52% 45% 55%;
+    opacity: 0.5;
+  }
+  40% {
+    transform: translate(-12vw, 20vh) scale(1.1);
+    border-radius: 45% 55% 58% 42% / 55% 45% 52% 48%;
+    opacity: 0.7;
+  }
+  80% {
+    transform: translate(6vw, 34vh) scale(0.96);
+    border-radius: 52% 48% 42% 58% / 42% 58% 48% 52%;
+    opacity: 0.58;
+  }
+}
+
+@keyframes lava-drift-6 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    border-radius: 48% 52% 55% 45% / 52% 48% 45% 55%;
+    opacity: 0.55;
+  }
+  25% {
+    transform: translate(-20vw, -10vh) scale(1.06);
+    border-radius: 58% 42% 48% 52% / 45% 55% 62% 38%;
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate(-6vw, -24vh) scale(0.92);
+    border-radius: 42% 58% 55% 45% / 58% 42% 48% 52%;
+    opacity: 0.48;
+  }
+  75% {
+    transform: translate(-14vw, 6vh) scale(1.08);
+    border-radius: 52% 48% 38% 62% / 48% 52% 55% 45%;
+    opacity: 0.68;
+  }
+}
+
+@media (max-width: 640px) {
+  .lava-bg__orb {
+    filter: blur(56px);
+  }
+
+  .lava-bg__orb--1 {
+    width: 280px;
+    height: 280px;
+  }
+
+  .lava-bg__orb--2 {
+    width: 220px;
+    height: 220px;
+  }
+
+  .lava-bg__orb--3 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .lava-bg__orb--4 {
+    width: 160px;
+    height: 160px;
+  }
+
+  .lava-bg__orb--5 {
+    width: 140px;
+    height: 140px;
+  }
+
+  .lava-bg__orb--6 {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lava-bg__orb {
+    animation: none;
+  }
+}

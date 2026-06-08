@@ -17,18 +17,19 @@
 .app-brand__title {
   margin: 0;
   font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--text-h);
+  font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.app-brand--sm .app-brand__title {
-  font-size: 1.25rem;
+  line-height: 1.15;
+  color: var(--text-h);
 }
 
 .app-brand--lg .app-brand__title {
   font-size: 2rem;
+  text-shadow: 0 0 40px rgba(255, 107, 0, 0.25);
+}
+
+.app-brand--sm .app-brand__title {
+  font-size: 1.25rem;
 }
 
 .app-brand__subtitle {

@@ -1,12 +1,12 @@
 const CURSOR_COLORS = [
-  '#6366f1',
-  '#ec4899',
-  '#14b8a6',
-  '#f59e0b',
-  '#8b5cf6',
-  '#ef4444',
-  '#06b6d4',
-  '#84cc16',
+  '#ff6b00',
+  '#ff8c2a',
+  '#ffb040',
+  '#ff453a',
+  '#64d2ff',
+  '#30d158',
+  '#bf5af2',
+  '#ff375f',
 ]
 
 export function colorForClient(clientId: string): string {

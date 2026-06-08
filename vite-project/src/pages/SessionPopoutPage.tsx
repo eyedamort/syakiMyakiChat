@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
+import { LavaBackground } from '../components/LavaBackground'
 import { WysiwygEditor } from '../components/WysiwygEditor'
 import { useCollaborativeEditor } from '../hooks/useCollaborativeEditor'
 import { webSocketService } from '../services/websocket'
@@ -50,6 +51,7 @@ function SessionPopoutEditor({
 
   return (
     <div className="popout-page">
+      <LavaBackground />
       <header className="popout-header">
         <div>
           <h1 className="popout-title">Сяки Мяки чат</h1>

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { LavaBackground } from './LavaBackground'
 import './PageShell.css'
 
 interface PageShellProps {
@@ -9,12 +10,7 @@ interface PageShellProps {
 export function PageShell({ children, variant = 'centered' }: PageShellProps) {
   return (
     <div className={`page-shell page-shell--${variant}`}>
-      <div className="page-shell__decor" aria-hidden>
-        <div className="page-shell__blob page-shell__blob--1" />
-        <div className="page-shell__blob page-shell__blob--2" />
-        <div className="page-shell__blob page-shell__blob--3" />
-        <div className="page-shell__paws">🐾 🐾 🐾 🐾 🐾 🐾</div>
-      </div>
+      <LavaBackground />
       {children}
     </div>
   )

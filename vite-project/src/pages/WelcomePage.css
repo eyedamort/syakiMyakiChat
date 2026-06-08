@@ -4,9 +4,11 @@
   max-width: 440px;
   padding: 40px 36px;
   background: var(--surface);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--border);
   border-radius: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--glass-shadow);
   text-align: center;
   overflow: hidden;
 }
@@ -17,8 +19,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: var(--gradient-brand);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
 }
 
 .welcome-card .app-brand {
@@ -37,17 +39,21 @@
 }
 
 .field-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-h);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .text-input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 13px 16px;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface-raised);
+  border-radius: 12px;
+  background: var(--surface-solid);
+  backdrop-filter: var(--glass-filter-sm);
+  -webkit-backdrop-filter: var(--glass-filter-sm);
   color: var(--text-h);
   font-size: 1rem;
   font-family: inherit;
@@ -56,39 +62,44 @@
   box-sizing: border-box;
 }
 
+.text-input::placeholder {
+  color: var(--text-muted);
+}
+
 .text-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-bg);
+  border-color: var(--border-glow);
+  box-shadow: var(--glow-orange-sm), var(--glass-highlight);
 }
 
 .form-error {
   margin: 0;
   font-size: 0.85rem;
-  color: #ef4444;
+  color: #ff6b6b;
 }
 
 .primary-btn {
   margin-top: 8px;
-  padding: 13px 24px;
-  border: none;
-  border-radius: 10px;
+  padding: 14px 24px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
   background: var(--gradient-brand);
   color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  transition: opacity 0.15s, transform 0.15s;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  box-shadow: var(--glow-orange);
 }
 
 .primary-btn:hover:not(:disabled) {
   opacity: 0.95;
-  transform: translateY(-1px);
+  transform: scale(1.02);
+  box-shadow: 0 0 40px rgba(255, 107, 0, 0.45), 0 0 80px rgba(255, 80, 0, 0.18);
 }
 
 .primary-btn:disabled {
-  opacity: 0.45;
+  opacity: 0.35;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -97,13 +108,19 @@
 .session-error-link {
   display: inline-block;
   margin-top: 16px;
+  color: var(--accent-glow);
   text-decoration: none;
+}
+
+.session-error-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @media (max-width: 640px) {
   .welcome-card {
     padding: 28px 20px;
-    border-radius: 16px;
+    border-radius: 18px;
   }
 
   .welcome-card .app-brand {
