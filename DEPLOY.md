@@ -148,6 +148,72 @@ Volume `session-data` сохраняется между деплоями.
 - Horizontal scaling WebSocket (нужен shared pub/sub)
 - Бэкапы volume — настраивается на уровне инфраструктуры
 
+## AlmaLinux 10 (VPS 1 vCPU / 1 GB RAM)
+
+Подходит для минимального VPS. На 1 GB RAM **обязателен swap** — скрипт ниже создаёт его автоматически.
+
+### Быстрая установка (одна команда на сервере)
+
+```bash
+ssh root@YOUR_SERVER_IP
+curl -fsSL https://raw.githubusercontent.com/eyedamort/syakiMyakiChat/main/deploy/setup-almalinux.sh | bash
+```
+
+Или после клонирования:
+
+```bash
+git clone https://github.com/eyedamort/syakiMyakiChat.git /opt/syakiMyakiChat
+cd /opt/syakiMyakiChat
+sudo bash deploy/setup-almalinux.sh
+```
+
+Скрипт: Docker, firewalld (порт 80), swap 1 GB, `docker compose up -d --build`.
+
+### Ручная установка (AlmaLinux 10)
+
+```bash
+dnf install -y git curl dnf-plugins-core firewalld
+# swap 1G — см. deploy/setup-almalinux.sh
+
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+dnf install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+systemctl enable --now docker
+
+firewall-cmd --permanent --add-service=http
+firewall-cmd --reload
+
+git clone https://github.com/eyedamort/syakiMyakiChat.git
+cd syakiMyakiChat
+cp .env.example .env
+docker compose up -d --build
+```
+
+### Проверка
+
+```bash
+curl http://127.0.0.1/health
+```
+
+В браузере: **http://YOUR_SERVER_IP**
+
+### Если сборка падает по памяти (OOM)
+
+```bash
+free -h
+swapon --show
+# добавить swap вручную — см. setup-almalinux.sh
+docker compose build --no-cache
+docker compose up -d
+```
+
+### Обновление на сервере
+
+```bash
+cd /opt/syakiMyakiChat   # или каталог клона
+git pull
+docker compose up -d --build
+```
+
 ## Локальная разработка (без Docker)
 
 См. [README.md](./README.md): backend `:8080`, frontend `:5173` с Vite proxy.
