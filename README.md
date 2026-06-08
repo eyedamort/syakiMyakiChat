@@ -83,14 +83,3 @@ vibe/
 - `VITE_API_URL` / `VITE_WS_URL` — только если фронт и бэк на разных доменах
 
 В Docker-сборке по умолчанию фронт ходит на тот же origin (`/api`, `/ws` через nginx).
-
-## Как передать проект
-
-1. Залейте репозиторий на GitHub/GitLab (без `.env` и `backend/data/`).
-2. Отправьте другу ссылку и [DEPLOY.md](./DEPLOY.md).
-3. Либо архив: `git archive` или zip без `node_modules`.
-
-```bash
-# Пример архива без лишнего
-git archive --format=zip HEAD -o vibe.zip
-```
