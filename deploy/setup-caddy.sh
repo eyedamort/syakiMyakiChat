@@ -10,9 +10,9 @@ if [[ "${EUID}" -ne 0 ]]; then
   exit 1
 fi
 
-echo "==> Docker: localhost:8080"
+echo "==> Docker: порт 80 (HTTP)"
 cd "${INSTALL_DIR}"
-echo "WEB_PORT=8080" > .env
+echo "WEB_PORT=80" > .env
 docker compose up -d
 
 echo "==> Caddy"

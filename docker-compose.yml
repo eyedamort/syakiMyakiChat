@@ -27,7 +27,7 @@ services:
       context: .
       dockerfile: vite-project/Dockerfile
     ports:
-      - "127.0.0.1:${WEB_PORT:-8080}:80"
+      - "${WEB_PORT:-80}:80"
     depends_on:
       backend:
         condition: service_healthy

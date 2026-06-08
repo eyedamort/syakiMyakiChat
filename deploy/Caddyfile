@@ -1,13 +1,9 @@
 {
 	email admin@syakimyaki.ru
-	auto_https disable_redirects
 	acme_ca https://acme-v02.api.letsencrypt.org/directory
 }
 
-syakimyaki.ru, www.syakimyaki.ru {
-	reverse_proxy 127.0.0.1:8080
-}
-
-http://138.16.178.125 {
-	reverse_proxy 127.0.0.1:8080
+# Только HTTPS — HTTP (порт 80) обслуживает Docker напрямую
+https://syakimyaki.ru, https://www.syakimyaki.ru {
+	reverse_proxy 127.0.0.1:80
 }
