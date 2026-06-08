@@ -1,4 +1,5 @@
 import { SYNC_DEBOUNCE_MS, WS_ENABLED, buildWsUrl } from '../config'
+import { createClientId } from '../utils/clientId'
 import type {
   EditorCursorMessage,
   EditorUpdateMessage,
@@ -28,7 +29,7 @@ const RECONNECT_MAX_MS = 10000
 class WebSocketService {
   private socket: WebSocket | null = null
   private status: ConnectionStatus = 'idle'
-  private readonly clientId = crypto.randomUUID()
+  private readonly clientId = createClientId()
   private sessionId: string | null = null
   private userName: string | null = null
   private wsUrl: string | null = null
